@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <title>Home</title>
+    <style>
+        .container{
+            height: 100vh;
+        }
+        .topic{
+            font-size: 3rem;
+        }
+        .btn{
+            font-size: 2rem;
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+    
+    </div>
+    <script>
+        var div_container = document.createElement('div')
+        div_container.setAttribute('class','container d-flex align-items-center justify-content-center')
+        var div_row = document.createElement('div')
+        div_row.setAttribute('class','row text-center')
+        var div1 = document.createElement('div')
+        div1.setAttribute('class','col-12 mb-3 ml-3 topic')
+        div1.innerHTML = 'Quick Quiz'
+        var div2 = document.createElement('div')
+        div2.setAttribute('class','col-12 m-2')
+        var button2 = document.createElement('button')
+        button2.type = 'button'
+        button2.setAttribute('id','play')
+        button2.classList.add('play','btn','btn-info','text-center')
+        button2.innerHTML = 'Play'
+        div2.append(button2)
+        var div3 = document.createElement('div')
+        div3.setAttribute('class','col-12 m-2')
+        var button3 = document.createElement('button')
+        button3.type = 'button'
+        button3.classList.add('highScore','btn','btn-info')
+        button3.innerHTML = 'High Scores'
+        div3.append(button3)
+        div_row.append(div1,div2,div3)
+        div_container.append(div_row)
+        document.body.appendChild(div_container)
+
+        //console.log(window)
+        document.querySelector(".play").addEventListener('click',function(){
+            //location.replace("game.html")
+            window.open('game.html')
+        })
+        document.querySelector(".highScore").addEventListener('click',function(){
+            //location.replace("game.html")
+            window.document.location = 'highscores.html'
+        })
+    </script>
+</body>
+</html>

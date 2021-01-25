@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>End</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+        .container{
+            height: 100vh;
+        }
+        .topic{
+            font-size: 3rem;
+        }
+        .btn{
+            width: 500px;
+            font-size: 2rem;
+        }
+        .div{
+            font-size: 2.5rem;
+        }
+        #input1{
+            height: 50px;
+            width: 300px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    
+    <script>
+        var div_container = document.createElement('div')
+        div_container.setAttribute('class','container d-flex align-items-center justify-content-center')
+        var div_row = document.createElement('div')
+        div_row.setAttribute('class','row text-center')
+        var div1 = document.createElement('div')
+        div1.setAttribute('class','col-12 m-2 topic')
+        div1.innerText = 'SCORE'
+        var div2 = document.createElement('div')
+        div2.setAttribute('class','div col-12 m-2')
+        var div3 = document.createElement('div')
+        div3.setAttribute('id','input1')
+        div3.setAttribute('class','col-12 m-2')
+        var input3 = document.createElement('input')
+        input3.type = 'text'
+        input3.id = 'input'
+        input3.required = true
+        div3.append(input3)
+        var div4 = document.createElement('div')
+        div4.setAttribute('id','button1')
+        div4.setAttribute('class','col-12 m-2')
+        var button4 = document.createElement('button')
+        button4.type = 'button'
+        button4 .id = 'save'
+        button4.setAttribute('class','save btn btn-info')
+        button4.innerText = 'Save'
+        div4.appendChild(button4)
+        var div5 = document.createElement('div')
+        div5.setAttribute('class','loading col-12 m-1')
+        var div6 = document.createElement('div')
+        div6.setAttribute('class','loading col-12 m-1')
+        var div7 = document.createElement('div')
+        div7.setAttribute('id','button2')
+        div7.setAttribute('class','col-12 m-2')
+        var button7 = document.createElement('button')
+        button7.type = 'button'
+        button7.setAttribute('class','playAgain btn btn-info')
+        button7.innerText = 'Play again'
+        div7.appendChild(button7)
+        var div8 = document.createElement('div')
+        div8.setAttribute('id','button3')
+        div8.setAttribute('class','col-12 m-2')
+        var button8 = document.createElement('button')
+        button8.type = 'button'
+        button8.setAttribute('class','goHome btn btn-info')
+        button8.innerText = 'Go Home'
+        div8.appendChild(button8)
+        div_row.append(div1,div2,div3,div4,div5,div6,div7,div8)
+        div_container.appendChild(div_row)
+        document.body.appendChild(div_container)
+        
+        let score = localStorage.getItem('score')
+        console.log(localStorage.getItem('score'))
+        console.log(localStorage.getItem('i'))
+        
+        document.getElementsByClassName('div')[0].innerHTML = score
+
+        document.getElementById("save").addEventListener('click',async function(){
+            if(document.getElementById('input').value.length !== 0)
+            {
+            document.getElementById('save').disabled = true
+            document.getElementsByClassName('playAgain')[0].disabled = true
+            document.getElementsByClassName('goHome')[0].disabled = true
+            document.getElementsByClassName('loading')[0].innerHTML = "Your score is getting updated ..."
+            document.getElementsByClassName('loading')[1].innerHTML = "Check in High scores ..."
+            var url = "https://600ae0be778d1a00177949a3.mockapi.io/users";
+            let details = {
+            name : document.getElementById('input').value,
+            score : score
+            }
+            let data = await fetch(url,
+            {
+                method: "POST",
+                body: JSON.stringify(details),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                },
+            })
+            let result = await data.json()
+            console.log(result)
+            
+            window.close('end.html')
+        }
+        })
+
+        document.getElementsByClassName("playAgain")[0].addEventListener('click', function(){
+            window.document.location = 'game.html'
+        })
+        document.getElementsByClassName("goHome")[0].addEventListener('click', function(){
+            window.document.location = 'index.html'
+        })
+    </script>
+</body>
+</html>
